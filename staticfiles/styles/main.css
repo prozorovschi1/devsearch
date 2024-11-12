@@ -1,0 +1,15 @@
+h1{
+
+color: rgba(43, 0, 255, 0.815);
+
+}
+
+.button-home {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
