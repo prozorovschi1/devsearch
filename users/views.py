@@ -113,10 +113,29 @@ def createSkill(request):
             skill = form.save(commit=False)
             skill.owner = profile
             skill.save()
+            messages.success(request,'Skill was added succesfully!')
         return redirect('account')
 
 
 
     context = {'form': form}
     return render(request, 'users/skill_form.html', context)
+
+@login_required(login_url='login')
+def updateSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)  # Obține abilitatea specifică
+    form = SkillForm(instance=skill)  # Populează formularul cu datele existente
+    if request.method == 'POST':
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()  # Salvează modificările
+            messages.success(request, 'Skill was updated successfully!')
+            return redirect('account')  # Redirecționează către pagina de cont
+
+    context = {'form': form}
+    return render(request, 'users/skill_form.html', context)
+
+
+
 
