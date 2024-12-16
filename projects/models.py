@@ -22,6 +22,10 @@ class Project(models.Model):
     
 
 
+    
+    class Meta:
+        ordering = ['created']
+
 class Review(models.Model):
     VOTE_TYPE = (
         ('up', 'Up Vote'),
