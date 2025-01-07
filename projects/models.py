@@ -32,18 +32,15 @@ class Project(models.Model):
         return queryset
     
     @property
-    def calculate_votes(self):
+    def getVoteCount(self):
         reviews = self.review_set.all()
         upVotes = reviews.filter(value='up').count()
         totalVotes = reviews.count()
 
-        if totalVotes > 0:
-            ratio = (upVotes / totalVotes) * 100
-        else:
-            ratio = 0
-
+        ratio = (upVotes / totalVotes) * 100
         self.vote_total = totalVotes
         self.vote_ratio = ratio
+
         self.save()
 
 class Review(models.Model):
